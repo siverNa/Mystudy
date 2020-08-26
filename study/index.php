@@ -14,7 +14,7 @@
             <?php echo $_GET['id']; ?>
         </h2>
         <p>
-            샘플 텍스트
+            <?php echo file_get_contents("data/".$_GET['id']); ?>
         </p>
     </body>
 </html>
