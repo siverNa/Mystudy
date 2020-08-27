@@ -1,0 +1,7 @@
+PHP는 하이퍼텍스트 생성 언어(HTML)에 포함되어 동작하는 스크립팅 언어.
+ 별도의 실행 파일을 만들 필요 없이 HTML 문서 안에 직접 포함시켜 사용하며, C, 자바, 펄 언어 등에서 많은 문장 형식을 준용하고 있어 
+ 동적인 웹 문서를 빠르고 쉽게 작성할 수 있다. 
+ ASP(Active Server Pages)와 같이 스크립트에 따라 내용이 다양해서 동적 HTML 처리 속도가 빠르며, 
+ PHP 스크립트가 포함된 HTML 페이지에는 .php, .php3, .phtml이 붙는 파일 이름이 부여된다. 
+ 처음에는 ‘Personal Home Page Tools’이라 불렸으며, 공개된 무료 소스이다.
+[네이버 지식백과] PHP [Hypertext Preprocessor] (IT용어사전, 한국정보통신기술협회)
