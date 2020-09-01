@@ -51,16 +51,10 @@
                 print_list(); //파일 리스트를 출력하는 함수
             ?>
         </ol>
-        <a href="create.php">create</a>
-        <h2>
-            <?php
-                print_title();
-            ?>
-        </h2>
-        <p>
-            <?php 
-                print_discription(); //파일의 내용을 읽어서 출력하는 함수
-            ?>
-        </p>
+        <form action="create_process.php" method="POST">
+            <p><input type="text" name="title" placeholder="Title"></p>
+            <p><textarea name="description" cols="100" rows="10" placeholder="Description"></textarea></p>
+            <p><input type="submit"></p>
+        </form>
     </body>
 </html>
