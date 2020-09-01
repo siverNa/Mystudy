@@ -52,7 +52,7 @@
             ?>
         </ol>
         <a href="create.php">create</a>
-        <?php if(isset($_GET['id'])){ ?> 
+        <?php if(isset($_GET['id'])){ ?>
             <a href="update.php?id=<?=$_GET['id'] ?>">update</a> 
         <?php } ?>
         <form action="update_process.php" method="POST">
