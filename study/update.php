@@ -55,15 +55,11 @@
         <?php if(isset($_GET['id'])){ ?> 
             <a href="update.php?id=<?=$_GET['id'] ?>">update</a> 
         <?php } ?>
-        <h2>
-            <?php
-                print_title();
-            ?>
-        </h2>
-        <p>
-            <?php 
-                print_discription(); //파일의 내용을 읽어서 출력하는 함수
-            ?>
-        </p>
+        <form action="update_process.php" method="POST">
+            <input type="hidden" name="old_title" value="<?=$_GET['id'] ?>">
+            <p><input type="text" name="title" placeholder="Title" value="<?php print_title(); ?>"></p>
+            <p><textarea name="description" cols="100" rows="10" placeholder="Description"><?php print_discription(); ?></textarea></p>
+            <p><input type="submit"></p>
+        </form>
     </body>
 </html>
