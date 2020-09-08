@@ -1,11 +1,18 @@
 <?php
     $conn = mysqli_connect('localhost', 'root', 'apmsetup', 'opentutorials'); //mysqli_connect() : mysql과 php를 연결하는 함수
 
+    $filtered = array(
+        'title' => mysqli_real_escape_string($conn, $_POST['title']),
+        'description' => mysqli_real_escape_string($conn, $_POST['description'])
+        //mysqli_real_escape_string() : SQL injection 공격을 방어하기 위한 함수. 인자로 들어온 데이터 중에서 sql injection 공격과
+        //관련된 여러가지 기호를 문자로 바꿔버리는 함수.
+    );
+
     $sql = "
         INSERT INTO topic(title, description, created)
         VALUES (
-            '{$_POST['title']}',
-            '{$_POST['description']}',
+            '{$filtered['title']}',
+            '{$filtered['description']}',
             NOW()
         )
     ";
