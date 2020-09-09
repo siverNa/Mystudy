@@ -1,5 +1,5 @@
 <?php
-  $conn = mysqli_connect('localhost', 'root', 'apmsetup', 'opentutorials'); //mysqli_connect() : mysql과 php를 연결하는 함수
+  $conn = mysqli_connect('localhost', 'root', '111111', 'opentutorials'); //mysqli_connect() : mysql과 php를 연결하는 함수
 
   $sql = "SELECT * FROM topic";
 
@@ -14,18 +14,6 @@
     'title' => 'Welcome',
     'description' => 'Hello, WEB'
   );
-
-  if(isset($_GET['id'])){
-    $filtered_id = mysqli_real_escape_string($conn, $_GET['id']); 
-    //mysqli_real_escape_string() : SQL injection 공격을 방어하기 위한 함수. 인자로 들어온 데이터 중에서 sql injection 공격과
-    //관련된 여러가지 기호를 문자로 바꿔버리는 함수.
-    $sql = "SELECT * FROM topic WHERE id={$filtered_id}";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
-    
-    $article['title'] = htmlspecialchars($row['title']); //sql 결과를 저장한 배열(row)의 값을 article 배열에 저장함.
-    $article['description'] = htmlspecialchars($row['description']);   
-  }
 ?>
 <!doctype html>
 <html>

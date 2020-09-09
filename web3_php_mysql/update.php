@@ -15,9 +15,6 @@
     'description' => 'Hello, WEB'
   );
 
-  $update_link = ''; //id(글)를 선택전에는 나타나지 않도록 설정
-  $delete_link = '';
-
   if(isset($_GET['id'])){
     $filtered_id = mysqli_real_escape_string($conn, $_GET['id']); 
     //mysqli_real_escape_string() : SQL injection 공격을 방어하기 위한 함수. 인자로 들어온 데이터 중에서 sql injection 공격과
@@ -27,19 +24,7 @@
     $row = mysqli_fetch_array($result);
     
     $article['title'] = htmlspecialchars($row['title']); //sql 결과를 저장한 배열(row)의 값을 article 배열에 저장함.
-    $article['description'] = htmlspecialchars($row['description']);
-
-    $update_link = '<a href="update.php?id='.$_GET['id'].' ">update</a>'; //만약 글을 선택하면 그때 update링크가 나타나도록 설정
-
-    //delete의 경우 get방식으로 전달하면 단지 링크를 클릭했을 뿐인데도 데이터가 삭제되는 심각한 문제가 발생함
-    //이를 방지하기 위해서는 delete를 수행할땜 form을 사용하면 좋음
-    $delete_link = '
-      <form action="delete_process.php" method="post">
-        <input type="hidden" name="id" value="'.$_GET['id'].'">
-        <input type="submit" value="delete">
-      </form>
-    '; 
-    
+    $article['description'] = htmlspecialchars($row['description']);   
   }
 ?>
 <!doctype html>
@@ -53,10 +38,11 @@
     <ol>
       <?=$list?>
     </ol>
-    <a href="create.php">create</a>
-    <?=$update_link?>
-    <?=$delete_link?>
-    <h2><?=$article['title']?></h2>
-    <?=$article['description'] ?>
+    <form action="update_process.php" method="post">
+        <input type="hidden" name="id" value="<?=$_GET['id'] ?>">
+        <p><input type="text" name="title" placeholder="title" value="<?=$article['title'] ?>"></p>
+        <p><textarea name="description" cols="30" rows="10" placeholder="description"><?=$article['description'] ?></textarea></p>
+        <p><input type="submit"></p>
+    </form>
   </body>
 </html>
