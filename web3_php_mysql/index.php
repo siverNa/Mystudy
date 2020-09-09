@@ -12,22 +12,25 @@
 
   $article = array( //배열은 배열인데 문자를 이용한 배열은 '연관배열'
     'title' => 'Welcome',
-    'description' => 'Hello, WEB'
+    'description' => 'Hello, WEB',
   );
 
   $update_link = ''; //id(글)를 선택전에는 나타나지 않도록 설정
   $delete_link = '';
 
+  $author='';
+
   if(isset($_GET['id'])){
     $filtered_id = mysqli_real_escape_string($conn, $_GET['id']); 
     //mysqli_real_escape_string() : SQL injection 공격을 방어하기 위한 함수. 인자로 들어온 데이터 중에서 sql injection 공격과
     //관련된 여러가지 기호를 문자로 바꿔버리는 함수.
-    $sql = "SELECT * FROM topic WHERE id={$filtered_id}";
+    $sql = "SELECT * FROM topic LEFT JOIN author ON topic.author_id = author.id WHERE topic.id={$filtered_id}";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     
     $article['title'] = htmlspecialchars($row['title']); //sql 결과를 저장한 배열(row)의 값을 article 배열에 저장함.
     $article['description'] = htmlspecialchars($row['description']);
+    $article['name'] = htmlspecialchars($row['name']);
 
     $update_link = '<a href="update.php?id='.$_GET['id'].' ">update</a>'; //만약 글을 선택하면 그때 update링크가 나타나도록 설정
 
@@ -40,6 +43,7 @@
       </form>
     '; 
     
+    $author = "<p>by {$article['name']} </p> "; //글이 선택되었을 때에만 저자가 출력되도록 설정
   }
 ?>
 <!doctype html>
@@ -58,5 +62,6 @@
     <?=$delete_link?>
     <h2><?=$article['title']?></h2>
     <?=$article['description'] ?>
+    <p><?=$author ?></p>
   </body>
 </html>
