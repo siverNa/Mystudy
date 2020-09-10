@@ -35,5 +35,10 @@
             ?>
         </tr>
     </table>
+    <form action="create_process_author.php" method="post">
+        <p><input type="text" name="name" placeholder="name"></p>
+        <p><textarea name="profile" cols="30" rows="10" placeholder="profile"></textarea></p>
+        <p><input type="submit" value="Create Author"></p>
+    </form>
   </body>
 </html>
