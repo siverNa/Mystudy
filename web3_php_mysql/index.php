@@ -54,10 +54,11 @@
   </head>
   <body>
     <h1><a href="index.php">WEB에 어서와요</a></h1>
+    <p><a href="author.php">author</a></p>
     <ol>
       <?=$list?>
     </ol>
-    <a href="create.php">create</a>
+    <p><a href="create.php">create</a></p>
     <?=$update_link?>
     <?=$delete_link?>
     <h2><?=$article['title']?></h2>
