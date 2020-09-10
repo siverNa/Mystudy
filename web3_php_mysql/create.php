@@ -10,10 +10,13 @@
     $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a></li>";
   }
 
-  $article = array( //배열은 배열인데 문자를 이용한 배열은 '연관배열'
-    'title' => 'Welcome',
-    'description' => 'Hello, WEB'
-  );
+  $sql = "SELECT * FROM author"; //author 테이블에서 저자의 이름을 가져오기 위해 생성
+  $result = mysqli_query($conn, $sql);
+  $select_form = '<select name="author_id">';
+  while ($row = mysqli_fetch_array($result)){
+    $select_form .= '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+  }
+  $select_form .= '</select>';
 ?>
 <!doctype html>
 <html>
@@ -29,6 +32,7 @@
     <form action="create_process.php" method="post">
         <p><input type="text" name="title" placeholder="title"></p>
         <p><textarea name="description" cols="30" rows="10" placeholder="description"></textarea></p>
+        <p><?=$select_form ?></p>
         <p><input type="submit"></p>
     </form>
   </body>
