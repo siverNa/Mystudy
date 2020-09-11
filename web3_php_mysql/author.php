@@ -13,7 +13,7 @@
     <p><a href="index.php">topic</a></p>
     <table border="1">
         <tr> <!-- table 에서 tr은 행, td는 열을 나타냄, 하나의 tr은 하나의 행, 하나의 td는 하나의 열임. -->
-            <td>id</td><td>name</td><td>profile</td><td></td>
+            <td>id</td><td>name</td><td>profile</td><td></td><td></td>
             <?php
                 $sql = "SELECT * FROM author";
                 $result = mysqli_query($conn, $sql);
@@ -30,6 +30,17 @@
                         <td><?=$filtered['name']?></td>
                         <td><?=$filtered['profile']?></td>
                         <td><a href="author.php?id=<?=$filtered['id'] ?>">update</a></td>
+                        <td>
+                            <form action="delete_process_author.php" method="post" 
+                            onsubmit="if(!confirm('정말 지우시겠어요?')){return false; }">
+                            <!-- onsubmit : 전송행위가 일어났을 때, onsubmit의 속성값을 자바스크립트로써 실행하라는 뜻 -->
+                            <!-- confirm : submit 버튼을 누르면 팝업이 뜨면서 OK, Cancel 버튼 창이 나옴. cancel을 누르면 false를 반환 -->
+                            <!-- action으로 데이터를 전송한다는 기본 동작을 중지시킴 -->
+                            <!-- 아를 통해 사용자에게 한번 더 확인을 구하는 효과를 만들 수 있음. -->
+                                <input type="hidden" name="id" value="<?=$filtered['id']?>">
+                                <input type="submit" value="delete">
+                            </form>
+                        </td>
                     </tr>
                     <?php
                 }
