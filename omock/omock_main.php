@@ -19,7 +19,7 @@
         ?>
         <li onclick="logout()"><button>로그아웃</button></li>
         <?php
-            } else { //로그인 상태가 아니라면 로그인 및 회원가입 버튼 활성화
+            } else { //로그인 상태가 아니라면 로그인 버튼 활성화
         ?>
         <li><a href="omock_login.php">로그인</a></li>
 
